@@ -49,6 +49,6 @@ export {
   telosTestnet,
   zkSync,
   zkSyncTestnet,
-} from '@wagmi/chains'
+} from '@wagmi/core/chains'
 
-export type { Chain } from '@wagmi/chains'
+export type { Chain } from '@wagmi/core/chains'
