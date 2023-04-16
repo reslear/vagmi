@@ -4,6 +4,7 @@ const connectors = [
   'coinbaseWallet',
   'metaMask',
   'walletConnect',
+  'walletConnectLegacy',
   'injected',
 ];
 

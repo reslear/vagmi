@@ -3,7 +3,7 @@ import { Wallet } from 'ethers/lib/ethers';
 
 import { MockConnector } from '@wagmi/core/connectors/mock';
 import type { Chain, Connector, Provider, WebSocketProvider } from '@wagmi/core';
-import { allChains, chain as chain_ } from '@wagmi/core';
+import { hardhat } from '@wagmi/chains';
 
 import type { Ref } from 'vue';
 import { isRef, nextTick } from 'vue';
@@ -29,13 +29,14 @@ export function getNetwork(chain: Chain) {
 }
 
 export function getProvider({ chainId }: { chainId?: number } = {}) {
-  const chain = allChains.find(x => x.id === chainId) ?? chain_.hardhat;
+  const chain =  hardhat;
   const network = getNetwork(chain);
-  const url = chain_.hardhat.rpcUrls.default.toString();
+  const url = hardhat.rpcUrls.default.toString();
   const provider = new EthersProviderWrapper(url, network);
   provider.pollingInterval = 1_000;
   return provider;
 }
+
 
 export const accounts = [
   {

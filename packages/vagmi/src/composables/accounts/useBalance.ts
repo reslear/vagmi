@@ -15,25 +15,25 @@ export type UseBalanceArgs = Partial<FetchBalanceArgs> & {
 export type UseBalanceConfig = QueryConfig<FetchBalanceResult, Error>;
 
 export const queryKey = ({
-  addressOrName,
+  address,
   chainId,
   formatUnits,
   token,
 }: Partial<FetchBalanceArgs> & {
   chainId?: number
 }) =>
-  [{ entity: 'balance', addressOrName, chainId, formatUnits, token }] as const;
+  [{ entity: 'balance', address, chainId, formatUnits, token }] as const;
 
 const queryFn = ({
-  queryKey: [{ addressOrName, chainId, formatUnits, token }],
+  queryKey: [{ address, chainId, formatUnits, token }],
 }: QueryFunctionArgs<typeof queryKey>) => {
-  if (!addressOrName)
+  if (!address)
     throw new Error('address is required');
-  return fetchBalance({ addressOrName, chainId, formatUnits, token });
+  return fetchBalance({ address, chainId, formatUnits, token });
 };
 
 export function useBalance({
-  addressOrName,
+  address,
   cacheTime,
   chainId: chainId_,
   enabled = true,
@@ -49,14 +49,14 @@ export function useBalance({
   const chainId = useChainId({ chainId: chainId_ });
   const options = reactive({
     queryKey: computed(() => queryKey({
-      addressOrName: getMaybeRefValue(addressOrName),
+      address: getMaybeRefValue(address),
       chainId: getMaybeRefValue(chainId),
       formatUnits: getMaybeRefValue(formatUnits),
       token: getMaybeRefValue(token),
     })),
     queryFn,
     cacheTime,
-    enabled: computed(() => Boolean(getMaybeRefValue(enabled) && getMaybeRefValue(addressOrName))),
+    enabled: computed(() => Boolean(getMaybeRefValue(enabled) && getMaybeRefValue(address))),
     staleTime,
     suspense,
     onError,
@@ -74,7 +74,7 @@ export function useBalance({
       return;
     if (!getMaybeRefValue(blockNumber))
       return;
-    if (!getMaybeRefValue(addressOrName))
+    if (!getMaybeRefValue(address))
       return;
 
     balanceQuery.refetch();

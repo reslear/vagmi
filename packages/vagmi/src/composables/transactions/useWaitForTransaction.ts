@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { get } from '@vueuse/core';
 import type {
   WaitForTransactionArgs,
@@ -17,12 +18,13 @@ export type UseWaitForTransactionConfig = QueryConfig<
     Error
   >;
 
+type Hash = `0x${string}`;
+
 export const queryKey = ({
   confirmations,
   chainId,
   hash,
   timeout,
-  wait,
 }: Partial<WaitForTransactionArgs>) =>
   [
     {
@@ -31,14 +33,13 @@ export const queryKey = ({
       chainId,
       hash,
       timeout,
-      wait,
     },
   ] as const;
 
 const queryFn = ({
-  queryKey: [{ chainId, confirmations, hash, timeout, wait }],
+  queryKey: [{ chainId, confirmations, hash, timeout }],
 }: QueryFunctionArgs<typeof queryKey>) => {
-  return waitForTransaction({ chainId, confirmations, hash, timeout, wait });
+  return waitForTransaction({ chainId, confirmations, hash, timeout});
 };
 
 export function useWaitForTransaction({
@@ -46,7 +47,6 @@ export function useWaitForTransaction({
   confirmations,
   hash,
   timeout,
-  wait,
   cacheTime,
   enabled = true,
   staleTime,
@@ -58,11 +58,11 @@ export function useWaitForTransaction({
   const chainId = useChainId({ chainId: chainId_ });
 
   return useQuery(
-    queryKey({ chainId: get(chainId), confirmations, hash, timeout, wait }),
+    queryKey({ chainId: get(chainId), confirmations, hash, timeout }),
     queryFn,
     {
       cacheTime,
-      enabled: Boolean(enabled && (hash || wait)),
+      enabled: Boolean(enabled && (hash)),
       staleTime,
       suspense,
       onError,

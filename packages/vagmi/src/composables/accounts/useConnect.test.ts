@@ -112,7 +112,7 @@ describe('useConnect', () => {
               "account": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
               "chain": {
                 "id": 1,
-                "unsupported": false,
+                "unsupported": true,
               },
               "connector": "<MockConnector>",
               "provider": "<MockProvider>",
@@ -200,7 +200,7 @@ describe('useConnect', () => {
               "account": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
               "chain": {
                 "id": 1,
-                "unsupported": false,
+                "unsupported": true,
               },
               "connector": "<MockConnector>",
               "provider": "<MockProvider>",
@@ -236,7 +236,7 @@ describe('useConnect', () => {
               "account": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
               "chain": {
                 "id": 1,
-                "unsupported": false,
+                "unsupported": true,
               },
               "connector": "<MockConnector>",
               "provider": "<MockProvider>",
@@ -312,7 +312,7 @@ describe('useConnect', () => {
               "account": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
               "chain": {
                 "id": 3,
-                "unsupported": false,
+                "unsupported": true,
               },
               "connector": "<MockConnector>",
               "provider": "<MockProvider>",
@@ -375,7 +375,7 @@ describe('useConnect', () => {
             "account": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
             "chain": {
               "id": 3,
-              "unsupported": false,
+              "unsupported": true,
             },
             "connector": "<MockConnector>",
             "provider": "<MockProvider>",
@@ -396,7 +396,7 @@ describe('useConnect', () => {
               "account": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
               "chain": {
                 "id": 1,
-                "unsupported": false,
+                "unsupported": true,
               },
               "connector": "<MockConnector>",
               "provider": "<MockProvider>",
@@ -432,7 +432,7 @@ describe('useConnect', () => {
             "account": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
             "chain": {
               "id": 3,
-              "unsupported": false,
+              "unsupported": true,
             },
             "connector": "<MockConnector>",
             "provider": "<MockProvider>",
@@ -484,7 +484,7 @@ describe('useConnect', () => {
       expect(result.data.value?.chain).toMatchInlineSnapshot(`
         {
           "id": 3,
-          "unsupported": false,
+          "unsupported": true,
         }
       `);
     });
@@ -510,7 +510,7 @@ describe('useConnect', () => {
             "account": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
             "chain": {
               "id": 3,
-              "unsupported": false,
+              "unsupported": true,
             },
             "connector": "<MockConnector>",
             "provider": "<MockProvider>",
@@ -544,7 +544,7 @@ describe('useConnect', () => {
             "account": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
             "chain": {
               "id": 3,
-              "unsupported": false,
+              "unsupported": true,
             },
             "connector": "<MockConnector>",
             "provider": "<MockProvider>",

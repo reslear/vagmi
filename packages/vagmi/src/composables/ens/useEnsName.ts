@@ -11,11 +11,13 @@ export type UseEnsNameArgs = Partial<FetchEnsNameArgs>;
 
 export type UseEnsNameConfig = QueryConfig<FetchEnsNameResult, Error>;
 
+type Address = `0x${string}`
+
 export const queryKey = ({
   address,
   chainId,
 }: {
-  address?: string
+  address?: Address
   chainId?: number
 }) => [{ entity: 'ensName', address, chainId }] as const;
 
