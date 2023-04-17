@@ -1,4 +1,5 @@
-import { writeFileSync } from 'fs';
+import { writeFileSync } from 'node:fs';
+
 export function uniq<T extends any[]>(a: T) {
   return Array.from(new Set(a));
 }

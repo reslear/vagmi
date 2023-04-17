@@ -36,16 +36,18 @@ export interface UseConnectConfig {
   onSettled?: MutationOptions['onSettled']
 }
 
-export const mutationKey = (args: UseConnectArgs) => [
-  { entity: 'connect', ...args },
-];
+export function mutationKey(args: UseConnectArgs) {
+  return [
+    { entity: 'connect', ...args },
+  ];
+}
 
-const mutationFn = (args: UseConnectArgs) => {
+function mutationFn(args: UseConnectArgs) {
   const { connector, chainId } = args;
   if (!connector)
     throw new Error('connector is required');
   return connect({ connector, chainId });
-};
+}
 
 export function useConnect({
   chainId,

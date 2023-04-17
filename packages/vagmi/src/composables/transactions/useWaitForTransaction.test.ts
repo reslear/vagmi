@@ -20,7 +20,7 @@ function useWaitForTransactionWithConnect(
 describe('useWaitForTransaction', () => {
   it('mounts', () => {
     const { result } = renderComposable(() => useWaitForTransaction());
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     const { internal, ...res } = result;
     expect(res).toMatchInlineSnapshot(`
       {
@@ -59,7 +59,6 @@ describe('useWaitForTransaction', () => {
         expect(result.waitForTransaction.isSuccess).toBeTruthy(),
       );
 
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { data, internal, ...res } = result.waitForTransaction;
       expect(data).toBeDefined();
       expect(data.value?.transactionHash).toEqual(hash);
@@ -99,7 +98,6 @@ describe('useWaitForTransaction', () => {
         expect(result.waitForTransaction.isSuccess).toBeTruthy(),
       );
 
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { data, internal, ...res } = result.waitForTransaction;
       expect(data).toBeDefined();
       expect(data.value?.transactionHash).toEqual(hash);

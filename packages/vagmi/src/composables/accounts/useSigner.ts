@@ -1,24 +1,25 @@
-import type { FetchSignerArgs, FetchSignerResult, Signer } from '@wagmi/core'
+import type { FetchSignerArgs, FetchSignerResult, Signer } from '@wagmi/core';
 import { fetchSigner, watchSigner } from '@wagmi/core';
 import { useQueryClient } from 'vue-query';
-import { tryOnScopeDispose } from '@vueuse/core';
-import { useAccount } from './useAccount'
+import { get, tryOnScopeDispose } from '@vueuse/core';
 import type { QueryConfig, QueryFunctionArgs } from '../../types';
-import { useQuery, useChainId } from '../utils';
-import { get } from '@vueuse/core';
+import { useChainId, useQuery } from '../utils';
+import { useAccount } from './useAccount';
 
 export type UseSignerConfig = Omit<
   QueryConfig<FetchSignerResult, Error>,
   'cacheTime' | 'staleTime' | 'enabled'
 > &
-  FetchSignerArgs
+FetchSignerArgs;
 
-export const queryKey = ({ chainId }: FetchSignerArgs ) => [{ entity: 'signer', chainId, persist: false }] as const;
+export function queryKey({ chainId }: FetchSignerArgs) {
+  return [{ entity: 'signer', chainId, persist: false }] as const;
+}
 
 function queryFn<TSigner extends Signer>({
   queryKey: [{ chainId }],
 }: QueryFunctionArgs<typeof queryKey>) {
-  return fetchSigner<TSigner>({ chainId })
+  return fetchSigner<TSigner>({ chainId });
 }
 
 export function useSigner<TSigner extends Signer>({
@@ -28,8 +29,8 @@ export function useSigner<TSigner extends Signer>({
   onSettled,
   onSuccess,
 }: UseSignerConfig = {}) {
-  const { connector } = useAccount()
-  const chainId = useChainId({ chainId: chainId_ })
+  const { connector } = useAccount();
+  const chainId = useChainId({ chainId: chainId_ });
   const signerQuery = useQuery(queryKey({ chainId: chainId_ }), queryFn, {
     enabled: Boolean(connector),
     suspense,
@@ -41,9 +42,9 @@ export function useSigner<TSigner extends Signer>({
   });
 
   const queryClient = useQueryClient();
-  const unwatch = watchSigner({ chainId : get(chainId) }, signer => 
-    queryClient.setQueryData(queryKey({ chainId : get(chainId) }), signer),
-    );
+  const unwatch = watchSigner({ chainId: get(chainId) }, signer =>
+    queryClient.setQueryData(queryKey({ chainId: get(chainId) }), signer),
+  );
 
   tryOnScopeDispose(() => {
     unwatch();

@@ -14,23 +14,24 @@ export type UseBalanceArgs = Partial<FetchBalanceArgs> & {
 
 export type UseBalanceConfig = QueryConfig<FetchBalanceResult, Error>;
 
-export const queryKey = ({
+export function queryKey({
   address,
   chainId,
   formatUnits,
   token,
 }: Partial<FetchBalanceArgs> & {
   chainId?: number
-}) =>
-  [{ entity: 'balance', address, chainId, formatUnits, token }] as const;
+}) {
+  return [{ entity: 'balance', address, chainId, formatUnits, token }] as const;
+}
 
-const queryFn = ({
+function queryFn({
   queryKey: [{ address, chainId, formatUnits, token }],
-}: QueryFunctionArgs<typeof queryKey>) => {
+}: QueryFunctionArgs<typeof queryKey>) {
   if (!address)
     throw new Error('address is required');
   return fetchBalance({ address, chainId, formatUnits, token });
-};
+}
 
 export function useBalance({
   address,

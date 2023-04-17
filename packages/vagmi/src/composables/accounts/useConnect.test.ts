@@ -1,8 +1,7 @@
-import { toRaw, unref } from 'vue';
 import { describe, expect, it, vi } from 'vitest';
 import { connect } from '@wagmi/core';
 import { MockConnector } from '@wagmi/core/connectors/mock';
-import { renderComposable, setupClient, unrefAllProperties } from '../../../test';
+import { renderComposable, setupClient } from '../../../test';
 import { getSigners, unrefs } from '../../../test/utils';
 import type { UseConnectArgs, UseConnectConfig } from './useConnect';
 import { useConnect } from './useConnect';

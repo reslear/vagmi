@@ -29,14 +29,13 @@ export function getNetwork(chain: Chain) {
 }
 
 export function getProvider({ chainId }: { chainId?: number } = {}) {
-  const chain =  hardhat;
+  const chain = hardhat;
   const network = getNetwork(chain);
   const url = hardhat.rpcUrls.default.toString();
   const provider = new EthersProviderWrapper(url, network);
   provider.pollingInterval = 1_000;
   return provider;
 }
-
 
 export const accounts = [
   {

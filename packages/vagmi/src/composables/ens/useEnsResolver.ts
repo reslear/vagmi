@@ -16,21 +16,23 @@ export type UseEnsResolverArgs = Partial<FetchEnsResolverArgs>;
 
 export type UseEnsResolverConfig = QueryConfig<FetchEnsResolverResult, Error>;
 
-export const queryKey = ({
+export function queryKey({
   chainId,
   name,
 }: {
   chainId?: number
   name?: string
-}) => [{ entity: 'ensResolver', chainId, name }] as const;
+}) {
+  return [{ entity: 'ensResolver', chainId, name }] as const;
+}
 
-const queryFn = ({
+function queryFn({
   queryKey: [{ chainId, name }],
-}: QueryFunctionArgs<typeof queryKey>) => {
+}: QueryFunctionArgs<typeof queryKey>) {
   if (!name)
     throw new Error('name is required');
   return fetchEnsResolver({ chainId, name });
-};
+}
 
 export function useEnsResolver({
   cacheTime,

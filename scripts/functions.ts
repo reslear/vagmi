@@ -1,5 +1,6 @@
-import { join, resolve } from 'path';
-import { readdirSync, statSync } from 'fs';
+import { join, resolve } from 'node:path';
+import { readdirSync, statSync } from 'node:fs';
+
 export function getVagmiFunctionsWithPath() {
   const composablesPath = resolve(__dirname, '../packages/vagmi/src/composables');
   const collectComposablesPath: Record<string, any> = [];

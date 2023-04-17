@@ -16,21 +16,23 @@ export type UseEnsAddressArgs = Partial<FetchEnsAddressArgs>;
 
 export type UseEnsAddressConfig = QueryConfig<FetchEnsAddressResult, Error>;
 
-export const queryKey = ({
+export function queryKey({
   chainId,
   name,
 }: {
   chainId?: number
   name?: string
-}) => [{ entity: 'ensAddress', chainId, name }] as const;
+}) {
+  return [{ entity: 'ensAddress', chainId, name }] as const;
+}
 
-const queryFn = ({
+function queryFn({
   queryKey: [{ chainId, name }],
-}: QueryFunctionArgs<typeof queryKey>) => {
+}: QueryFunctionArgs<typeof queryKey>) {
   if (!name)
     throw new Error('name is required');
   return fetchEnsAddress({ chainId, name });
-};
+}
 
 export function useEnsAddress({
   cacheTime,

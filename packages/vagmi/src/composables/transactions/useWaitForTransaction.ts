@@ -20,13 +20,13 @@ export type UseWaitForTransactionConfig = QueryConfig<
 
 type Hash = `0x${string}`;
 
-export const queryKey = ({
+export function queryKey({
   confirmations,
   chainId,
   hash,
   timeout,
-}: Partial<WaitForTransactionArgs>) =>
-  [
+}: Partial<WaitForTransactionArgs>) {
+  return [
     {
       entity: 'waitForTransaction',
       confirmations,
@@ -35,12 +35,13 @@ export const queryKey = ({
       timeout,
     },
   ] as const;
+}
 
-const queryFn = ({
+function queryFn({
   queryKey: [{ chainId, confirmations, hash, timeout }],
-}: QueryFunctionArgs<typeof queryKey>) => {
-  return waitForTransaction({ chainId, confirmations, hash, timeout});
-};
+}: QueryFunctionArgs<typeof queryKey>) {
+  return waitForTransaction({ chainId, confirmations, hash, timeout });
+}
 
 export function useWaitForTransaction({
   chainId: chainId_,

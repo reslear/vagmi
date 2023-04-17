@@ -17,7 +17,9 @@ export interface UseDisconnectConfig {
 
 export const mutationKey = [{ entity: 'disconnect' }] as const;
 
-const mutationFn = () => disconnect();
+function mutationFn() {
+  return disconnect();
+}
 
 export function useDisconnect({
   onError,

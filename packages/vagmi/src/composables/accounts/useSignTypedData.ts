@@ -19,16 +19,18 @@ export type UseSignTypedDataConfig = MutationConfig<
   SignTypedDataArgs
 >;
 
-export const mutationKey = (args: UseSignTypedDataArgs) => [
-  { entity: 'signTypedData', ...args },
-];
+export function mutationKey(args: UseSignTypedDataArgs) {
+  return [
+    { entity: 'signTypedData', ...args },
+  ];
+}
 
-const mutationFn = (args: UseSignTypedDataArgs) => {
+function mutationFn(args: UseSignTypedDataArgs) {
   const { domain, types, value } = args;
   if (!domain || !types || !value)
     throw new Error('domain, types, and value are all required');
   return signTypedData({ domain, types, value });
-};
+}
 
 export function useSignTypedData({
   domain,

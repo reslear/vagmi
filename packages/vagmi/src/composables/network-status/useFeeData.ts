@@ -15,18 +15,20 @@ type UseFeeDataArgs = Partial<FetchFeeDataArgs> & {
 
 export type UseFeedDataConfig = QueryConfig<FetchFeeDataResult, Error>;
 
-export const queryKey = ({
+export function queryKey({
   chainId,
   formatUnits,
 }: Partial<FetchFeeDataArgs> & {
   chainId?: number
-}) => [{ entity: 'feeData', chainId, formatUnits }] as const;
+}) {
+  return [{ entity: 'feeData', chainId, formatUnits }] as const;
+}
 
-const queryFn = ({
+function queryFn({
   queryKey: [{ chainId, formatUnits }],
-}: QueryFunctionArgs<typeof queryKey>) => {
+}: QueryFunctionArgs<typeof queryKey>) {
   return fetchFeeData({ chainId, formatUnits });
-};
+}
 
 export function useFeeData({
   cacheTime,

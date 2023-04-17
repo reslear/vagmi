@@ -132,7 +132,6 @@ describe('useNetwork', () => {
           result.network.isSuccess.value,
         );
 
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { activeChain, chains, data, ...res } = result.network;
         expect(activeChain.value?.id).toMatchInlineSnapshot('4');
         expect(data.value?.id).toMatchInlineSnapshot('4');
@@ -167,7 +166,6 @@ describe('useNetwork', () => {
           result.network.isSuccess.value,
         );
 
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { activeChain, chains, data, ...res } = result.network;
         expect(activeChain.value?.id).toMatchInlineSnapshot('4');
         expect(data.value?.id).toMatchInlineSnapshot('4');
@@ -208,7 +206,6 @@ describe('useNetwork', () => {
         await result.network.switchNetwork.value?.(4);
         await waitFor(() => result.network.isError.value);
 
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { activeChain, chains, ...res } = result.network;
         expect(unrefs(res)).toMatchInlineSnapshot(`
           {
@@ -246,7 +243,6 @@ describe('useNetwork', () => {
           result.network.isSuccess.value,
         );
 
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { activeChain, chains, data, ...res } = result.network;
         expect(activeChain.value?.id).toMatchInlineSnapshot('69');
         expect(activeChain.value?.unsupported).toMatchInlineSnapshot('true');

@@ -11,23 +11,25 @@ export type UseEnsNameArgs = Partial<FetchEnsNameArgs>;
 
 export type UseEnsNameConfig = QueryConfig<FetchEnsNameResult, Error>;
 
-type Address = `0x${string}`
+type Address = `0x${string}`;
 
-export const queryKey = ({
+export function queryKey({
   address,
   chainId,
 }: {
   address?: Address
   chainId?: number
-}) => [{ entity: 'ensName', address, chainId }] as const;
+}) {
+  return [{ entity: 'ensName', address, chainId }] as const;
+}
 
-const queryFn = ({
+function queryFn({
   queryKey: [{ address }],
-}: QueryFunctionArgs<typeof queryKey>) => {
+}: QueryFunctionArgs<typeof queryKey>) {
   if (!address)
     throw new Error('address is required');
   return fetchEnsName({ address });
-};
+}
 
 export function useEnsName({
   address,

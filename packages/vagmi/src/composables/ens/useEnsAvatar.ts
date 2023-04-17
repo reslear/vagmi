@@ -16,21 +16,23 @@ export type UseEnsAvatarArgs = Partial<FetchEnsAvatarArgs>;
 
 export type UseEnsLookupConfig = QueryConfig<FetchEnsAvatarResult, Error>;
 
-export const queryKey = ({
+export function queryKey({
   address,
   chainId,
 }: {
   address?: UseEnsAvatarArgs['address']
   chainId?: number
-}) => [{ entity: 'ensAvatar', address, chainId }] as const;
+}) {
+  return [{ entity: 'ensAvatar', address, chainId }] as const;
+}
 
-const queryFn = ({
+function queryFn({
   queryKey: [{ address, chainId }],
-}: QueryFunctionArgs<typeof queryKey>) => {
+}: QueryFunctionArgs<typeof queryKey>) {
   if (!address)
     throw new Error('address is required');
   return fetchEnsAvatar({ address, chainId });
-};
+}
 
 export function useEnsAvatar({
   address,

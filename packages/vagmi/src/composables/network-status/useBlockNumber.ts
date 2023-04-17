@@ -21,14 +21,15 @@ type UseBlockNumberArgs = Partial<FetchBlockNumberArgs> & {
 
 export type UseBlockNumberConfig = QueryConfig<FetchBlockNumberResult, Error>;
 
-export const queryKey = ({ chainId }: { chainId?: number }) =>
-  [{ entity: 'blockNumber', chainId }] as const;
+export function queryKey({ chainId }: { chainId?: number }) {
+  return [{ entity: 'blockNumber', chainId }] as const;
+}
 
-const queryFn = ({
+function queryFn({
   queryKey: [{ chainId }],
-}: QueryFunctionArgs<typeof queryKey>) => {
+}: QueryFunctionArgs<typeof queryKey>) {
   return fetchBlockNumber({ chainId });
-};
+}
 
 export function useBlockNumber({
   cacheTime = 0,

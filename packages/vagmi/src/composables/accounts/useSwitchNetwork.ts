@@ -20,16 +20,18 @@ export type UseNetworkConfig = MutationConfig<
   SwitchNetworkArgs
 >;
 
-export const mutationKey = (args: UseNetworkArgs) => [
-  { entity: 'switchNetwork', ...args },
-];
+export function mutationKey(args: UseNetworkArgs) {
+  return [
+    { entity: 'switchNetwork', ...args },
+  ];
+}
 
-const mutationFn = (args: UseNetworkArgs) => {
+function mutationFn(args: UseNetworkArgs) {
   const { chainId } = args;
   if (!chainId)
     throw new Error('chainId is required');
   return switchNetwork({ chainId });
-};
+}
 
 export function useSwitchNetwork({
   chainId,

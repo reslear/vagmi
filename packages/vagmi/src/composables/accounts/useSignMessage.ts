@@ -14,16 +14,18 @@ export type UseSignMessageConfig = MutationConfig<
   SignMessageArgs
 >;
 
-export const mutationKey = (args: UseSignMessageArgs) => [
-  { entity: 'signMessage', ...args },
-];
+export function mutationKey(args: UseSignMessageArgs) {
+  return [
+    { entity: 'signMessage', ...args },
+  ];
+}
 
-const mutationFn = (args: UseSignMessageArgs) => {
+function mutationFn(args: UseSignMessageArgs) {
   const { message } = args;
   if (!message)
     throw new Error('message is required');
   return signMessage({ message });
-};
+}
 
 export function useSignMessage({
   message,

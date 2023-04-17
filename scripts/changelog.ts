@@ -1,5 +1,5 @@
-import { join, resolve } from 'path';
-import { existsSync, rmSync } from 'fs';
+import { join, resolve } from 'node:path';
+import { existsSync, rmSync } from 'node:fs';
 import md5 from 'md5';
 import Git from 'simple-git';
 import type { CommitInfo, ContributorInfo } from '@vueuse/metadata';

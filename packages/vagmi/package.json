@@ -2,6 +2,16 @@
   "name": "vagmi",
   "version": "0.1.21",
   "description": "Vue composables for Ethereum",
+  "author": "Robert Soriano <sorianorobertc@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/wobsoriano/vagmi#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wobsoriano/vagmi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wobsoriano/vagmi/issues"
+  },
   "keywords": [
     "vue",
     "hooks",
@@ -12,81 +22,71 @@
     "web3",
     "wagmi"
   ],
-  "homepage": "https://github.com/wobsoriano/vagmi#readme",
-  "bugs": {
-    "url": "https://github.com/wobsoriano/vagmi/issues"
-  },
-  "license": "MIT",
-  "author": "Robert Soriano <sorianorobertc@gmail.com>",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wobsoriano/vagmi.git"
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./chains": {
+      "require": "./dist/chains.js",
+      "import": "./dist/chains.mjs"
+    },
+    "./connectors/coinbaseWallet": {
+      "types": "./dist/connectors/coinbaseWallet.d.ts",
+      "require": "./dist/connectors/coinbaseWallet.js",
+      "import": "./dist/connectors/coinbaseWallet.mjs"
+    },
+    "./connectors/injected": {
+      "types": "./dist/connectors/injected.d.ts",
+      "require": "./dist/connectors/injected.js",
+      "import": "./dist/connectors/injected.mjs"
+    },
+    "./connectors/metaMask": {
+      "types": "./dist/connectors/metaMask.d.ts",
+      "require": "./dist/connectors/metaMask.js",
+      "import": "./dist/connectors/metaMask.mjs"
+    },
+    "./connectors/walletConnect": {
+      "types": "./dist/connectors/walletConnect.d.ts",
+      "require": "./dist/connectors/walletConnect.js",
+      "import": "./dist/connectors/walletConnect.mjs"
+    },
+    "./connectors/walletConnectLegacy": {
+      "types": "./dist/connectors/walletConnectLegacy.d.ts",
+      "require": "./dist/connectors/walletConnectLegacy.js",
+      "import": "./dist/connectors/walletConnectLegacy.mjs"
+    },
+    "./providers/alchemy": {
+      "types": "./dist/providers/alchemy.d.ts",
+      "require": "./dist/providers/alchemy.js",
+      "import": "./dist/providers/alchemy.mjs"
+    },
+    "./providers/infura": {
+      "types": "./dist/providers/infura.d.ts",
+      "require": "./dist/providers/infura.js",
+      "import": "./dist/providers/infura.mjs"
+    },
+    "./providers/jsonRpc": {
+      "types": "./dist/providers/jsonRpc.d.ts",
+      "require": "./dist/providers/jsonRpc.js",
+      "import": "./dist/providers/jsonRpc.mjs"
+    },
+    "./providers/public": {
+      "types": "./dist/providers/public.d.ts",
+      "require": "./dist/providers/public.js",
+      "import": "./dist/providers/public.mjs"
+    }
   },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    },
-    "./chains": {
-      "import": "./dist/chains.mjs",
-      "require": "./dist/chains.js"
-    },
-    "./connectors/coinbaseWallet": {
-      "import": "./dist/connectors/coinbaseWallet.mjs",
-      "require": "./dist/connectors/coinbaseWallet.js",
-      "types": "./dist/connectors/coinbaseWallet.d.ts"
-    },
-    "./connectors/injected": {
-      "import": "./dist/connectors/injected.mjs",
-      "require": "./dist/connectors/injected.js",
-      "types": "./dist/connectors/injected.d.ts"
-    },
-    "./connectors/metaMask": {
-      "import": "./dist/connectors/metaMask.mjs",
-      "require": "./dist/connectors/metaMask.js",
-      "types": "./dist/connectors/metaMask.d.ts"
-    },
-    "./connectors/walletConnect": {
-      "import": "./dist/connectors/walletConnect.mjs",
-      "require": "./dist/connectors/walletConnect.js",
-      "types": "./dist/connectors/walletConnect.d.ts"
-    },
-    "./connectors/walletConnectLegacy": {
-      "import": "./dist/connectors/walletConnectLegacy.mjs",
-      "require": "./dist/connectors/walletConnectLegacy.js",
-      "types": "./dist/connectors/walletConnectLegacy.d.ts"
-    },
-    "./providers/alchemy": {
-      "import": "./dist/providers/alchemy.mjs",
-      "require": "./dist/providers/alchemy.js",
-      "types": "./dist/providers/alchemy.d.ts"
-    },
-    "./providers/infura": {
-      "import": "./dist/providers/infura.mjs",
-      "require": "./dist/providers/infura.js",
-      "types": "./dist/providers/infura.d.ts"
-    },
-    "./providers/jsonRpc": {
-      "import": "./dist/providers/jsonRpc.mjs",
-      "require": "./dist/providers/jsonRpc.js",
-      "types": "./dist/providers/jsonRpc.d.ts"
-    },
-    "./providers/public": {
-      "import": "./dist/providers/public.mjs",
-      "require": "./dist/providers/public.js",
-      "types": "./dist/providers/public.d.ts"
-    }
-  },
   "files": [
     "dist",
     "chains.d.ts",
     "connectors",
     "providers"
   ],
-  "sideEffects": false,
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -101,11 +101,11 @@
   },
   "dependencies": {
     "@coinbase/wallet-sdk": "^3.6.5",
+    "@tanstack/vue-query": "^4.29.1",
     "@vueuse/core": "^10.0.2",
     "@wagmi/core": "^0.10.9",
     "@walletconnect/ethereum-provider": "^2.7.0",
-    "klona": "^2.0.6",
-    "@tanstack/vue-query": "^4.29.1"
+    "klona": "^2.0.6"
   },
   "devDependencies": {
     "@antfu/ni": "^0.21.3",

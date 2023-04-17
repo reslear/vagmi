@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue';
 const props = defineProps<{ fn: string }>();
 const contributors = ref([]);
 fetch('/contributors.json').then((res) => {
