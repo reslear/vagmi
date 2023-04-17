@@ -3,7 +3,7 @@ import { useBalance } from './useBalance';
 
 describe('useBalance', () => {
   it('it mounts', async () => {
-    const { result, waitFor } = renderComposable(() => useBalance({ addressOrName: 'awkweb.eth' }));
+    const { result, waitFor } = renderComposable(() => useBalance({ address: 'awkweb.eth' }));
 
     await waitFor(() => result.isSuccess.value, {
       timeout: 5_000,

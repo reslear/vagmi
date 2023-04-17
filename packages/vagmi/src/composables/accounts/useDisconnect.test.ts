@@ -125,12 +125,12 @@ describe('useDisconnect', () => {
 
       await actConnect({ utils });
 
-      expect(result.account.data).toMatchInlineSnapshot(`
-        {
-          "address": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
-          "connector": "<MockConnector>",
-        }
-      `);
+      expect(result.account.address).toMatchInlineSnapshot(
+        `"0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"`,
+      )
+      expect(result.account.connector).toMatchInlineSnapshot(
+        `"<MockConnector>"`,
+      )
 
       await result.disconnect.disconnect();
 
