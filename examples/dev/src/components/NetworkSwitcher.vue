@@ -20,7 +20,7 @@ const {
 
     <div v-if="switchNetwork">
       <template v-for="c in chains" :key="c.id">
-        <button v-if="c.id === chain?.id">
+        <button :disabled="c.id === chain?.id" @click="switchNetwork?.(c.id)">
           {{ c.name }}
           {{ isLoading && c.id === pendingChainId ? ' (switching)' : '' }}
         </button>
