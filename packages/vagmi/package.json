@@ -100,25 +100,25 @@
     "vue": ">=3.2.0"
   },
   "dependencies": {
-    "@coinbase/wallet-sdk": "^3.6.4",
-    "@vueuse/core": "^9.13.0",
-    "@wagmi/core": "^0.10.1",
-    "@walletconnect/ethereum-provider": "^2.4.10",
+    "@coinbase/wallet-sdk": "^3.6.5",
+    "@vueuse/core": "^10.0.2",
+    "@wagmi/core": "^0.10.9",
+    "@walletconnect/ethereum-provider": "^2.7.0",
     "klona": "^2.0.6",
-    "vue-query": "2.0.0-beta.1"
+    "vue-query": "2.0.0-beta.12"
   },
   "devDependencies": {
-    "@antfu/ni": "^0.20.0",
+    "@antfu/ni": "^0.21.3",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^18.15.3",
-    "@vue/test-utils": "^2.3.1",
-    "bumpp": "^9.0.0",
-    "ethers": ">=5.5.1 <6",
+    "@types/node": "^18.15.11",
+    "@vue/test-utils": "^2.3.2",
+    "bumpp": "^9.1.0",
+    "ethers": ">=6.3.0",
     "jsdom": "^21.1.1",
-    "p-wait-for": "^5.0.0",
-    "tsup": "^6.6.3",
-    "typescript": "^4.9.5",
-    "vitest": "^0.29.2",
+    "p-wait-for": "^5.0.2",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.4",
+    "vitest": "^0.30.1",
     "vue": "^3.2.47"
   }
 }

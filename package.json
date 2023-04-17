@@ -1,6 +1,6 @@
 {
   "name": "root",
-  "packageManager": "pnpm@7.29.1",
+  "packageManager": "pnpm@7.32.0",
   "scripts": {
     "dev": "nr --parallel --filter playground --filter vagmi dev",
     "dev:docs": "nr update && nr --filter docs dev",
@@ -11,17 +11,17 @@
     "update": "esno scripts/update.ts"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.36.0",
-    "@antfu/ni": "^0.20.0",
+    "@antfu/eslint-config": "^0.38.4",
+    "@antfu/ni": "^0.21.3",
     "@ethersproject/abstract-provider": "^5.7.0",
     "@ethersproject/abstract-signer": "^5.7.0",
     "@ethersproject/providers": "^5.7.2",
     "@types/md5": "^2.3.2",
-    "eslint": "^8.36.0",
+    "eslint": "^8.38.0",
     "esno": "^0.16.3",
     "eventemitter3": "^5.0.0",
     "md5": "^2.3.0",
-    "pnpm": "^7.29.2",
+    "pnpm": "^7.32.0",
     "simple-git": "^3.17.0"
   },
   "eslintConfig": {
